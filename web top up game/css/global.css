@@ -1,0 +1,231 @@
+/* ==========================================================================
+   GLOBAL STYLES & VARIABLES - NexGen
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+
+:root {
+    --bg: #020617; 
+    --card: rgba(30, 41, 59, 0.5); 
+    --border: rgba(255, 255, 255, 0.08);
+    --primary: #0ea5e9; 
+    --primary-glow: rgba(14, 165, 233, 0.3);
+    --text: #f8fafc; 
+    --text-muted: #94a3b8;
+}
+
+/* --- BASE SETUP --- */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Plus Jakarta Sans', sans-serif; 
+}
+
+body { 
+    background-color: var(--bg); 
+    color: var(--text); 
+    min-height: 100vh; 
+    overflow-x: hidden; 
+    line-height: 1.6; 
+    animation: fadeInPage 0.5s ease-in-out; 
+}
+
+body::before {
+    content: ""; 
+    position: fixed; 
+    top: 0; left: 0; 
+    width: 100%; height: 100%;
+    background: radial-gradient(circle at 0% 0%, rgba(14, 165, 233, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 100% 100%, rgba(99, 102, 241, 0.05) 0%, transparent 40%);
+    z-index: -1;
+}
+
+/* --- NAVIGATION --- */
+nav {
+    position: sticky; 
+    top: 0; 
+    z-index: 1000;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    padding: 20px 8%; 
+    background: rgba(2, 6, 23, 0.8);
+    backdrop-filter: blur(20px); 
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.4s ease;
+}
+
+nav.scrolled {
+    padding: 12px 8% !important; 
+    background: rgba(2, 6, 23, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+.logo { 
+    font-size: 1.8rem; 
+    font-weight: 800; 
+    cursor: pointer; 
+    text-decoration: none; 
+    color: var(--text); 
+}
+
+.logo span { 
+    color: var(--primary); 
+    text-shadow: 0 0 15px var(--primary-glow); 
+}
+
+nav ul { 
+    display: flex; 
+    list-style: none; 
+    gap: 30px; 
+}
+
+nav ul li a { 
+    color: var(--text); 
+    text-decoration: none; 
+    font-weight: 600; 
+    transition: 0.3s; 
+    opacity: 0.7; 
+}
+
+nav ul li a:hover { 
+    opacity: 1; 
+    color: var(--primary); 
+}
+
+/* --- GLOBAL COMPONENTS --- */
+.container { 
+    width: 95%; 
+    max-width: 1100px; 
+    margin: 0 auto; 
+    padding: 20px 0; 
+}
+
+.card-glass { 
+    background: var(--card); 
+    border: 1px solid var(--border); 
+    border-radius: 24px; 
+    padding: 20px; 
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px); 
+}
+
+/* WhatsApp Floating Button */
+.wa-float {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #25d366;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.wa-float:hover {
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: 0 10px 20px rgba(37, 211, 102, 0.4);
+}
+
+.wa-float img {
+    width: 30px;
+    height: 30px;
+}
+
+/* --- UNIVERSAL FOOTER --- */
+.main-footer {
+    background: rgba(2, 6, 23, 0.95);
+    border-top: 1px solid var(--border);
+    padding: 60px 8% 30px;
+    margin-top: 80px;
+    width: 100%;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+.footer-section h4 {
+    margin-bottom: 20px;
+    color: var(--text);
+    font-size: 1.1rem;
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--primary);
+    padding-left: 8px;
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 30px;
+    text-align: center;
+}
+
+.payment-methods {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    filter: grayscale(1) opacity(0.4);
+    margin: 20px 0 30px;
+    transition: 0.3s;
+}
+
+.payment-methods img {
+    height: 20px;
+    transition: 0.3s ease;
+}
+
+.payment-methods:hover {
+    filter: grayscale(0) opacity(1);
+}
+
+.payment-methods img:hover {
+    transform: scale(1.1);
+}
+
+/* --- ANIMATIONS & RESPONSIVE --- */
+@keyframes fadeInPage { 
+    from { opacity: 0; filter: blur(5px); } 
+    to { opacity: 1; filter: blur(0); } 
+}
+
+@media (max-width: 768px) {
+    nav { padding: 15px 5%; }
+    nav ul { gap: 15px; }
+    .footer-content { text-align: center; }
+    .footer-links a:hover { padding-left: 0; }
+}
+
+@media (max-width: 600px) {
+    .main-footer {
+        padding: 40px 5% 20px;
+    }
+    .payment-methods { gap: 15px; }
+}

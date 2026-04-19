@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexGen TopUp - Store Terpercaya</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div id="notif" class="notif-popup">
+        <div id="notif-content"></div>
+    </div>
+
+    <a href="https://wa.me/6283891722404" class="wa-float" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" style="width: 35px;" alt="WhatsApp">
+    </a>
+
+    <button id="scrollTop" style="position: fixed; bottom: 85px; right: 25px; width: 45px; height: 45px; background: var(--primary); color: white; border: none; border-radius: 12px; cursor: pointer; display: none; z-index: 1000; box-shadow: 0 5px 15px var(--primary-glow); font-size: 1.2rem;">↑</button>
+
+    <nav>
+        <div class="logo" onclick="location.href='index.html'">Nex<span>Gen.</span></div>
+        <ul>
+            <li><a href="index.html">Market</a></li>
+            <li><a href="tracking.html">Tracking</a></li>
+        </ul>
+    </nav>
+
+    <div class="container"> 
+        <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; gap: 20px; flex-wrap: wrap; padding-top: 40px;">
+            <div style="flex: 1; min-width: 300px;">
+                <h1 style="font-size: 2.5rem; line-height: 1.2;">NexGen <span>Store.</span></h1>
+                <p style="color: var(--text-muted);">Top-up tercepat dengan sistem otomatisasi 24 jam.</p>
+            </div>
+            <div style="flex: 1; min-width: 300px;">
+                <input type="text" id="searchInput" placeholder="Cari game favoritmu..." style="margin-bottom: 0;">
+            </div>
+        </header>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 40px;">
+            <div class="card-glass" style="padding: 15px; display: flex; align-items: center; gap: 10px;">
+                <span style="font-size: 1.2rem;">⚡</span>
+                <div><b style="display: block; font-size: 0.9rem;">45 Detik</b><small style="font-size: 0.7rem; color: var(--text-muted);">Proses Otomatis</small></div>
+            </div>
+            <div class="card-glass" style="padding: 15px; display: flex; align-items: center; gap: 10px;">
+                <span style="font-size: 1.2rem;">🛡️</span>
+                <div><b style="display: block; font-size: 0.9rem;">100% Aman</b><small style="font-size: 0.7rem; color: var(--text-muted);">Legal & Resmi</small></div>
+            </div>
+            <div class="card-glass" style="padding: 15px; display: flex; align-items: center; gap: 10px;">
+                <span style="font-size: 1.2rem;">🌟</span>
+                <div><b style="display: block; font-size: 0.9rem;">50k+ User</b><small style="font-size: 0.7rem; color: var(--text-muted);">Pelanggan Puas</small></div>
+            </div>
+        </div>
+        
+        <div class="promo-banner" style="margin-bottom: 30px;">
+            <div class="banner-content" style="background: linear-gradient(135deg, var(--primary), #0369a1); border-radius: 16px; padding: 25px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 10px 25px var(--primary-glow);">
+                <div style="position: relative; z-index: 2;">
+                    <h2 style="font-size: 1.4rem; margin-bottom: 5px;">Flash Sale ⚡</h2>
+                    <p style="opacity: 0.9; font-size: 0.85rem;">Dapatkan harga spesial untuk Diamond MLBB & VP hari ini!</p>
+                </div>
+                <button onclick="document.getElementById('gameGrid').scrollIntoView({behavior:'smooth'})" style="position: relative; z-index: 2; padding: 10px 20px; border-radius: 10px; border: none; background: white; color: var(--primary); font-weight: 700; cursor: pointer; font-size: 0.8rem; white-space: nowrap; margin-left: 15px;">Top Up Now</button>
+                <div style="position: absolute; right: -20px; top: -20px; width: 120px; height: 120px; background: rgba(255,255,255,0.1); border-radius: 50%;"></div>
+            </div>
+        </div>
+
+        <div class="category-filter" style="display: flex; gap: 10px; margin-bottom: 25px; overflow-x: auto; padding-bottom: 5px;">
+            <button class="filter-btn active" data-category="all">Semua</button>
+            <button class="filter-btn" data-category="mobile">Mobile</button>
+            <button class="filter-btn" data-category="pc">PC Game</button>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+            <div style="width: 4px; height: 20px; background: var(--primary); border-radius: 10px;"></div>
+            <h3 style="font-size: 1.1rem;">Katalog Populer</h3>
+        </div>
+
+        <div class="game-grid" id="gameGrid"></div>
+
+        <div class="how-to-order" style="margin-top: 60px; margin-bottom: 60px;">
+            <div class="section-title">
+                <div class="indicator"></div>
+                <h3>Cara Isi Ulang</h3>
+            </div>
+            <div class="order-steps" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                <div class="card-glass" style="padding: 25px; border-radius: 20px; text-align: center;">
+                    <div style="width: 40px; height: 40px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-weight: 800;">1</div>
+                    <h4 style="font-size: 0.9rem; margin-bottom: 8px;">Pilih Game</h4>
+                    <p style="font-size: 0.75rem; color: var(--text-muted);">Pilih game favorit kamu.</p>
+                </div>
+                <div class="card-glass" style="padding: 25px; border-radius: 20px; text-align: center;">
+                    <div style="width: 40px; height: 40px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-weight: 800;">2</div>
+                    <h4 style="font-size: 0.9rem; margin-bottom: 8px;">Masukkan Data</h4>
+                    <p style="font-size: 0.75rem; color: var(--text-muted);">Isi User ID dan Zone ID.</p>
+                </div>
+                <div class="card-glass" style="padding: 25px; border-radius: 20px; text-align: center;">
+                    <div style="width: 40px; height: 40px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-weight: 800;">3</div>
+                    <h4 style="font-size: 0.9rem; margin-bottom: 8px;">Bayar & Selesai</h4>
+                    <p style="font-size: 0.75rem; color: var(--text-muted);">Produk masuk otomatis.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mini-testimonials" style="margin-bottom: 60px;">
+            <div class="card-glass" style="display: flex; align-items: center; justify-content: space-around; padding: 20px; border-style: dashed; flex-wrap: wrap; gap: 20px;">
+                <div style="text-align: center;">
+                    <div style="color: #fbbf24; font-size: 1.2rem; margin-bottom: 5px;">★★★★★</div>
+                    <p style="font-size: 0.7rem; font-style: italic; color: var(--text-muted);">"Gila, baru bayar langsung masuk!"</p>
+                    <small style="font-size: 0.6rem; font-weight: 700;">— @Andi_Gamer</small>
+                </div>
+                <div style="text-align: center;">
+                    <div style="color: #fbbf24; font-size: 1.2rem; margin-bottom: 5px;">★★★★★</div>
+                    <p style="font-size: 0.7rem; font-style: italic; color: var(--text-muted);">"Adminnya fast respon via WA."</p>
+                    <small style="font-size: 0.6rem; font-weight: 700;">— @Siska_ML</small>
+                </div>
+                <div style="text-align: center;">
+                    <div style="color: #fbbf24; font-size: 1.2rem; margin-bottom: 5px;">★★★★★</div>
+                    <p style="font-size: 0.7rem; font-style: italic; color: var(--text-muted);">"Harga termurah sejauh ini."</p>
+                    <small style="font-size: 0.6rem; font-weight: 700;">— @Budi_Valo</small>
+                </div>
+            </div>
+        </div>
+
+    </div> 
+    
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="logo" style="margin-bottom: 20px;">Nex<span>Gen.</span></div>
+                <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.8;">
+                    Platform top-up game tercepat dan terpercaya di Indonesia. Layanan otomatis 24/7.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>Menu</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Market</a></li>
+                    <li><a href="tracking.html">Lacak Pesanan</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Keamanan</h4>
+                <div style="background: rgba(14, 165, 233, 0.1); padding: 15px; border-radius: 12px; border: 1px solid var(--primary-glow); font-size: 0.8rem;">
+                    🔒 <b>SSL Secure Connection</b><br>
+                    Data transaksi Anda terenkripsi aman.
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p style="font-size: 0.7rem; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase;">Metode Pembayaran</p>
+            <div class="payment-methods">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo_QRIS.svg" alt="QRIS">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg" alt="BCA">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Logo_ovo.svg" alt="OVO">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Logo_dana.svg" alt="DANA">
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 10px;">© 2026 NexGen Store. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

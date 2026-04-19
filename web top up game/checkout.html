@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - NexGen Premium</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/checkout.css">
+</head>
+<body>
+
+    <div id="toast" style="display:none; position:fixed; top:20px; right:20px; background:var(--primary); color:white; padding:15px 25px; border-radius:12px; z-index:10000; box-shadow:0 10px 30px rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2);"></div>
+
+    <a href="https://wa.me/6283891722404" class="wa-float" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+
+    <nav>
+        <div class="logo" onclick="location.href='index.html'">Nex<span>Gen.</span></div>
+        <a href="index.html" style="color: var(--text-muted); text-decoration: none;">← Kembali</a>
+    </nav>
+
+    <div class="container" style="max-width: 1000px;">
+                <div class="card-glass" style="display: flex; align-items: center; gap: 20px; padding: 20px; margin-bottom: 25px;">
+                    <div style="position: relative;">
+                        <div style="position: absolute; inset: -5px; background: var(--primary); filter: blur(15px); opacity: 0.3; border-radius: 20px;"></div>
+                        <img id="gImg" src="" style="width: 80px; height: 80px; border-radius: 15px; position: relative; object-fit: cover; border: 1px solid var(--border);">
+                    </div>
+                    <div>
+                        <h2 id="gTitle" style="font-size: 1.5rem; letter-spacing: -0.5px;">Loading...</h2>
+                        <div style="display: flex; gap: 8px; margin-top: 5px;">
+                            <span style="font-size: 0.7rem; background: rgba(34, 197, 94, 0.1); color: #22c55e; padding: 2px 10px; border-radius: 10px; border: 1px solid rgba(34, 197, 94, 0.2);">Tersedia</span>
+                            <span style="font-size: 0.7rem; background: rgba(14, 165, 233, 0.1); color: var(--primary); padding: 2px 10px; border-radius: 10px; border: 1px solid var(--primary-glow);">Otomatis</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checkout-layout" style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 25px;">
+                    <div style="display: flex; flex-direction: column; gap: 25px;">
+        <div class="card-glass" style="padding: 25px;">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                <span style="background: var(--primary); color: white; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.8rem; font-weight: bold;">1</span>
+                <h3 style="font-size: 1.1rem;">Lengkapi Data Akun</h3>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <input type="text" id="uId" placeholder="User ID" style="margin-bottom: 0;">
+                <input type="text" id="zoneId" placeholder="Zone ID" style="margin-bottom: 0;">
+            </div>
+
+            <div id="autoFillWrapper" style="display: none; margin-top: 12px;">
+                <button onclick="useLastAccount()" style="background: none; border: 1px solid var(--primary); color: var(--primary); padding: 6px 12px; border-radius: 20px; font-size: 0.7rem; cursor: pointer; transition: 0.3s; font-weight: 500; display: flex; align-items: center; gap: 5px;">
+                    ✨ Pakai ID Terakhir: <span id="lastIdText" style="font-weight: bold;"></span>
+                </button>
+            </div>
+            
+            <div style="margin-top: 15px; display: flex; align-items: center; gap: 12px;">
+                <button onclick="checkID()" id="btnCheck" style="background: rgba(14, 165, 233, 0.1); border: 1px solid var(--primary); color: var(--primary); padding: 8px 16px; border-radius: 8px; font-size: 0.75rem; cursor: pointer; font-weight: 600; transition: all 0.3s;">
+                    🔍 Cek ID Player
+                </button>
+                <span id="playerResult" style="font-size: 0.8rem; font-weight: 600; color: #22c55e; display: none;"></span>
+            </div>
+        </div>
+
+                <div class="card-glass" style="padding: 25px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                        <span style="background: var(--primary); color: white; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.8rem; font-weight: bold;">2</span>
+                        <h3 style="font-size: 1.1rem;">Pilih Nominal Top Up</h3>
+                    </div>
+                    <div class="nominal-grid" id="nomGrid" style="grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px;"></div>
+                </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 25px;">
+                <div class="card-glass" style="padding: 25px; border-color: var(--primary-glow);">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                        <span style="background: var(--primary); color: white; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.8rem; font-weight: bold;">3</span>
+                        <h3 style="font-size: 1.1rem;">Pembayaran</h3>
+                    </div>
+                    <select id="method" style="margin-bottom: 20px;">
+                        <option value="" disabled selected>Pilih Metode...</option>
+                        <option value="QRIS">QRIS (All Payment)</option>
+                        <option value="BCA">Bank BCA</option>
+                        <option value="DANA">DANA</option>
+                    </select>
+                    <button class="btn-primary" onclick="payWA()" style="box-shadow: 0 10px 20px var(--primary-glow);">Beli Sekarang</button>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 8px; display: block;">Punya Kode Promo?</label>
+                    <div style="display: flex; gap: 8px;">
+                        <input type="text" id="promoCode" placeholder="Masukkan kode..." style="margin-bottom: 0; flex: 1; text-transform: uppercase;">
+                        <button onclick="applyPromo()" style="background: var(--border); border: 1px solid var(--border); color: white; padding: 0 15px; border-radius: 10px; cursor: pointer; font-size: 0.8rem; font-weight: bold; transition: 0.3s;" id="btnPromo">Klaim</button>
+                    </div>
+                    <div id="promoMsg" style="font-size: 0.7rem; margin-top: 5px; display: none;"></div>
+                </div>
+
+                <div id="historySection" class="card-glass" style="display: none; padding: 25px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <h4 style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Riwayat Pesanan</h4>
+                        <button onclick="clearAllHistory()" style="background: none; border: none; color: #ef4444; font-size: 0.7rem; cursor: pointer; font-weight: bold; opacity: 0.7; transition: 0.3s;">
+                            🗑️ Hapus Semua
+                        </button>
+                    </div>
+                    
+                    <div id="historyList" style="display: flex; flex-direction: column; gap: 12px;">
+                        </div>
+                </div>
+
+        <div style="background: linear-gradient(90deg, rgba(14, 165, 233, 0.1), transparent); border-left: 4px solid var(--primary); padding: 15px; border-radius: 8px; margin-top: 30px;">
+            <p style="font-size: 0.85rem; color: var(--text);">
+                <span style="margin-right: 8px;">📢</span> 
+                Dapatkan potongan harga Rp 1.000 otomatis untuk pembayaran via <b>QRIS</b>!
+            </p>
+            </div>
+            </div>
+        </div>
+    </div>
+
+<div id="confirmModal" style="display:none; position:fixed; inset:0; background:rgba(2,6,23,0.85); backdrop-filter:blur(12px); z-index:9999; align-items:center; justify-content:center; padding:20px;">
+    <div class="card-glass">
+        <h3 style="text-align:center; margin-bottom:20px; font-weight:800; letter-spacing:1px;">KONFIRMASI PEMBAYARAN</h3>
+
+        <div id="qrisPaymentArea" style="display:none; text-align:center;">
+            <img id="qrisImg" src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo_QRIS.svg" style="width:180px; height:180px; object-fit:contain;">
+        </div>
+
+        <div class="modal-detail-list">
+            <div class="modal-detail-item"><span>Game</span><b id="mGame">-</b></div>
+            <div class="modal-detail-item"><span>Produk</span><b id="mItem">-</b></div>
+            <div class="modal-detail-item"><span>Metode</span><b id="mMethod">-</b></div>
+            <div class="modal-total">
+                <span style="font-weight:800; font-size:0.75rem; color:var(--primary);">TOTAL BAYAR</span>
+                <b id="mPrice" style="color:var(--text); font-size:1.3rem; font-weight:800;">-</b>
+            </div>
+        </div>
+
+        <div style="display:grid; gap:10px;">
+            <button onclick="sendOrder()" class="btn-primary" style="padding:16px; border-radius:12px;">✅ Konfirmasi Pembayaran</button>
+            <button onclick="closeModal()" style="background:none; border:none; color:var(--text-muted); font-size:0.8rem; cursor:pointer; font-weight:600;">Kembali / Batal</button>
+        </div>
+    </div>
+</div>
+
+    <div id="receiptModal" style="display:none; position:fixed; inset:0; background:rgba(2,6,23,0.98); backdrop-filter:blur(20px); z-index:10002; align-items:center; justify-content:center; padding:20px;">
+        <div id="receiptArea" style="max-width:380px; width:100%; background:#fff; color:#000; border-radius:20px; padding:30px; position:relative; box-shadow:0 20px 50px rgba(0,0,0,0.5);">
+            
+            <div style="text-align:center; border-bottom:2px dashed #ccc; padding-bottom:20px; margin-bottom:20px;">
+                <div style="font-size:1.5rem; font-weight:900; letter-spacing:-1px;">NEX<span style="color:var(--primary);">GEN.</span></div>
+                <p style="font-size:0.7rem; color:#666; margin-top:5px;">TERIMA KASIH TELAH BERBELANJA</p>
+            </div>
+
+            <div style="display:grid; gap:12px; font-size:0.85rem;">
+                <div style="display:flex; justify-content:space-between;"><span>No. Invoice:</span><b id="rInv">#NXG-88271</b></div>
+                <div style="display:flex; justify-content:space-between;"><span>Tanggal:</span><span id="rDate">-</span></div>
+                <hr style="border:none; border-top:1px solid #eee;">
+                <div style="display:flex; justify-content:space-between;"><span>Game:</span><b id="rGame">-</b></div>
+                <div style="display:flex; justify-content:space-between;"><span>Item:</span><b id="rItem">-</b></div>
+                <div style="display:flex; justify-content:space-between;"><span>ID Player:</span><b id="rUser">-</b></div>
+                <div style="display:flex; justify-content:space-between;"><span>Metode:</span><b id="rMethod">-</b></div>
+                <hr style="border:none; border-top:1px solid #eee;">
+                <div style="display:flex; justify-content:space-between; font-size:1.1rem;">
+                    <span>TOTAL:</span><b id="rPrice" style="color:#0ea5e9;">-</b>
+                </div>
+            </div>
+
+            <div style="text-align:center; margin-top:30px; border-top:2px dashed #ccc; padding-top:20px;">
+                <div style="background:#000; color:#fff; display:inline-block; padding:5px 15px; border-radius:5px; font-size:0.7rem; font-weight:bold; margin-bottom:10px;">LUNAS</div>
+                <p style="font-size:0.6rem; color:#999;">Simpan struk ini sebagai bukti transaksi yang sah.</p>
+            </div>
+
+            <div style="margin-top:25px; display:grid; gap:10px;">
+                <button onclick="finalRedirect()" style="background:#22c55e; color:#fff; border:none; padding:12px; border-radius:10px; font-weight:bold; cursor:pointer;">Kirim ke WhatsApp</button>
+                <button onclick="closeReceipt()" style="background:#eee; color:#666; border:none; padding:10px; border-radius:10px; font-size:0.8rem; cursor:pointer;">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="processingOverlay" style="display:none; position:fixed; inset:0; background:rgba(2,6,23,0.95); backdrop-filter:blur(15px); z-index:10001; align-items:center; justify-content:center; text-align:center; padding:20px;">
+        <div style="max-width:400px; width:100%;">
+            <div class="loader-circle" style="width: 80px; height: 80px; border: 4px solid rgba(255,255,255,0.1); border-top: 4px solid var(--primary); border-radius: 50%; margin: 0 auto 25px; animation: spin 1s linear infinite;"></div>
+            
+            <h2 id="processTitle" style="margin-bottom:10px; font-size: 1.5rem;">Memproses Pesanan...</h2>
+            <p id="processSub" style="color:var(--text-muted); font-size:0.9rem; margin-bottom:20px;">Menghubungkan ke server ${localStorage.getItem('gN')}...</p>
+            
+            <div style="width:100%; height:6px; background:rgba(255,255,255,0.1); border-radius:10px; overflow:hidden; margin-bottom:15px;">
+                <div id="progressBar" style="width:0%; height:100%; background:var(--primary); transition: width 0.3s ease; box-shadow: 0 0 15px var(--primary-glow);"></div>
+            </div>
+            
+            <div id="processStatus" style="font-family: monospace; font-size: 0.75rem; color: var(--primary);">[STATUS: INITIALIZING]</div>
+        </div>
+    </div>
+
+<style>
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+</style>
+
+<footer class="main-footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <div class="logo" style="margin-bottom: 20px;">Nex<span>Gen.</span></div>
+            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.8;">
+                Platform top-up game tercepat dan terpercaya di Indonesia. Layanan otomatis 24/7 untuk pengalaman gaming terbaikmu.
+            </p>
+        </div>
+        <div class="footer-section">
+            <h4>Menu</h4>
+            <ul class="footer-links">
+                <li><a href="index.html">Market</a></li>
+                <li><a href="tracking.html">Lacak Pesanan</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4>Keamanan</h4>
+            <div style="background: rgba(14, 165, 233, 0.1); padding: 15px; border-radius: 12px; border: 1px solid var(--primary-glow); font-size: 0.8rem;">
+                🔒 <b>SSL Secure Connection</b><br>
+                Data transaksi Anda terenkripsi dengan aman.
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p style="font-size: 0.7rem; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase;">Metode Pembayaran</p>
+        <div class="payment-methods">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo_QRIS.svg" alt="QRIS">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg" alt="BCA">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Logo_ovo.svg" alt="OVO">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Logo_dana.svg" alt="DANA">
+        </div>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">© 2026 NexGen Store. All rights reserved.</p>
+    </div>
+</footer>
+
+
+    <script src="js/checkout.js"></script>
+</body>
+</html>

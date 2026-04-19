@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran | Universitas Tadarusah</title>
+    <link rel="stylesheet" href="assets/pendaftaran.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    
+    <header class="navbar">
+        <div class="container flex-between">
+            <div class="logo-area">
+               <img src="img/unpam.png" alt="Logo" class="logo-img" onerror="this.style.display='none'">
+                <div class="logo-text">
+                    <span class="sub">UNIVERSITAS TADARUSAH</span>
+                    <span class="main">SANRIS</span>
+                    <span class="loc">TANGERANG</span>
+                </div>
+            </div>
+            <nav>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">BERANDA</a></li>
+                    <li><a href="tentangkami.html">TENTANG KAMI</a></li>
+                    <li><a href="akademik.html">AKADEMIK</a></li>
+                    <li><a href="pendaftaran.html" class="active">PENDAFTARAN</a></li>
+                    <li><a href="infoterbaru.html">INFO TERBARU</a></li>
+                </ul>
+                <button class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-regis">
+        <div class="container">
+            <h1><i class="fas fa-user-graduate"></i> Gabung Bersama Kami</h1>
+            <p>Penerimaan Mahasiswa Baru Gelombang 2026/2027</p>
+            <div class="hero-badges">
+                <span class="hero-badge"><i class="fas fa-check-circle"></i> Akreditasi A</span>
+                <span class="hero-badge"><i class="fas fa-certificate"></i> Terakreditasi BAN-PT</span>
+                <span class="hero-badge"><i class="fas fa-trophy"></i> Kampus Unggulan</span>
+            </div>
+        </div>
+    </section>
+
+    <main class="container">
+        <div class="steps-container">
+            <div class="step-box">
+                <div class="step-num">1</div>
+                <i class="fas fa-file-alt step-icon"></i>
+                <h4>Isi Formulir</h4>
+                <p>Lengkapi biodata secara online melalui portal pendaftaran resmi kami.</p>
+            </div>
+            <div class="step-box">
+                <div class="step-num">2</div>
+                <i class="fas fa-clipboard-check step-icon"></i>
+                <h4>Ujian Masuk</h4>
+                <p>Tes potensi akademik dan tes kesehatan mata di kampus.</p>
+            </div>
+            <div class="step-box">
+                <div class="step-num">3</div>
+                <i class="fas fa-user-check step-icon"></i>
+                <h4>Daftar Ulang</h4>
+                <p>Verifikasi berkas fisik dan pelunasan biaya pendidikan.</p>
+            </div>
+        </div>
+
+        <section class="form-section">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2><i class="fas fa-edit"></i> Formulir Pendaftaran Online</h2>
+                    <p>Silakan lengkapi data diri Anda dengan benar</p>
+                </div>
+
+                <form class="registration-form" id="registrationForm">
+                    <!-- Data Pribadi -->
+                    <div class="form-group-title">
+                        <i class="fas fa-user"></i> Data Pribadi
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="namaLengkap">Nama Lengkap <span class="required">*</span></label>
+                            <input type="text" id="namaLengkap" name="namaLengkap" required placeholder="Masukkan nama lengkap">
+                        </div>
+                        <div class="form-group">
+                            <label for="nik">NIK <span class="required">*</span></label>
+                            <input type="text" id="nik" name="nik" required placeholder="16 digit NIK" maxlength="16" pattern="[0-9]{16}">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="tempatLahir">Tempat Lahir <span class="required">*</span></label>
+                            <input type="text" id="tempatLahir" name="tempatLahir" required placeholder="Kota kelahiran">
+                        </div>
+                        <div class="form-group">
+                            <label for="tanggalLahir">Tanggal Lahir <span class="required">*</span></label>
+                            <input type="date" id="tanggalLahir" name="tanggalLahir" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="jenisKelamin">Jenis Kelamin <span class="required">*</span></label>
+                            <select id="jenisKelamin" name="jenisKelamin" required>
+                                <option value="">Pilih</option>
+                                <option value="L">Laki-laki</option>
+                                <option value="P">Perempuan</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="agama">Agama <span class="required">*</span></label>
+                            <select id="agama" name="agama" required>
+                                <option value="">Pilih</option>
+                                <option value="Islam">Islam</option>
+                                <option value="Kristen">Kristen</option>
+                                <option value="Katolik">Katolik</option>
+                                <option value="Hindu">Hindu</option>
+                                <option value="Buddha">Buddha</option>
+                                <option value="Konghucu">Konghucu</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Kontak -->
+                    <div class="form-group-title">
+                        <i class="fas fa-phone"></i> Informasi Kontak
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" required placeholder="contoh@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="noTelp">No. Telepon/WhatsApp <span class="required">*</span></label>
+                            <input type="tel" id="noTelp" name="noTelp" required placeholder="08xxxxxxxxxx" pattern="[0-9]{10,13}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="alamat">Alamat Lengkap <span class="required">*</span></label>
+                        <textarea id="alamat" name="alamat" required placeholder="Jalan, RT/RW, Kelurahan, Kecamatan" rows="3"></textarea>
+                    </div>
+
+                    <!-- Pendidikan -->
+                    <div class="form-group-title">
+                        <i class="fas fa-school"></i> Pendidikan Terakhir
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="asalSekolah">Asal Sekolah <span class="required">*</span></label>
+                            <input type="text" id="asalSekolah" name="asalSekolah" required placeholder="Nama sekolah">
+                        </div>
+                        <div class="form-group">
+                            <label for="tahunLulus">Tahun Lulus <span class="required">*</span></label>
+                            <input type="number" id="tahunLulus" name="tahunLulus" required min="2010" max="2026" placeholder="2026">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="jurusan">Jurusan <span class="required">*</span></label>
+                            <input type="text" id="jurusan" name="jurusan" required placeholder="IPA/IPS/SMK">
+                        </div>
+                        <div class="form-group">
+                            <label for="nilaiUN">Nilai Rata-rata UN/Rapor <span class="required">*</span></label>
+                            <input type="number" id="nilaiUN" name="nilaiUN" required min="0" max="100" step="0.01" placeholder="85.50">
+                        </div>
+                    </div>
+
+                    <!-- Pilihan Program -->
+                    <div class="form-group-title">
+                        <i class="fas fa-graduation-cap"></i> Pilihan Program Studi
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prodi">Program Studi yang Dipilih <span class="required">*</span></label>
+                        <select id="prodi" name="prodi" required>
+                            <option value="">Pilih Program Studi</option>
+                            <option value="D3 Refraksi Optisi">D3 Refraksi Optisi</option>
+                            <option value="S1 Teknik Informatika">S1 Teknik Informatika</option>
+                            <option value="S1 Manajemen">S1 Manajemen</option>
+                            <option value="S1 Akuntansi">S1 Akuntansi</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gelombang">Gelombang Pendaftaran <span class="required">*</span></label>
+                        <select id="gelombang" name="gelombang" required>
+                            <option value="">Pilih Gelombang</option>
+                            <option value="Gelombang I">Gelombang I (Januari - Maret 2026)</option>
+                            <option value="Gelombang II">Gelombang II (April - Juni 2026)</option>
+                            <option value="Gelombang III">Gelombang III (Juli - Agustus 2026)</option>
+                        </select>
+                    </div>
+
+                    <!-- Upload Dokumen -->
+                    <div class="form-group-title">
+                        <i class="fas fa-file-upload"></i> Upload Dokumen
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dokumen">Ijazah/Surat Keterangan Lulus (PDF, max 2MB)</label>
+                        <input type="file" id="dokumen" name="dokumen" accept=".pdf">
+                        <small>Format: PDF, Maksimal 2MB</small>
+                    </div>
+
+                    <!-- Persetujuan -->
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="setuju" name="setuju" required>
+                        <label for="setuju">
+                            Saya menyatakan bahwa data yang saya isi adalah benar dan dapat dipertanggungjawabkan. <span class="required">*</span>
+                        </label>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="reset" class="btn-secondary">
+                            <i class="fas fa-redo"></i> Reset Form
+                        </button>
+                        <button type="submit" class="btn-submit">
+                            <i class="fas fa-paper-plane"></i> Kirim Pendaftaran
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <aside class="info-sidebar">
+                <div class="sidebar-card">
+                    <h3><i class="fas fa-calendar-alt"></i> Jadwal Seleksi</h3>
+                    <div class="schedule-item">
+                        <strong>Gelombang I</strong>
+                        <p>Januari - Maret 2026</p>
+                    </div>
+                    <div class="schedule-item">
+                        <strong>Gelombang II</strong>
+                        <p>April - Juni 2026</p>
+                    </div>
+                    <div class="schedule-item">
+                        <strong>Gelombang III</strong>
+                        <p>Juli - Agustus 2026</p>
+                    </div>
+                    <hr>
+                    <p class="note"><i class="fas fa-info-circle"></i> Ujian dilakukan setiap hari Sabtu minggu ke-4</p>
+                </div>
+
+                <div class="sidebar-card">
+                    <h3><i class="fas fa-dollar-sign"></i> Biaya Pendaftaran</h3>
+                    <div class="price-box">
+                        <span class="price-label">Formulir Online</span>
+                        <span class="price-value">GRATIS</span>
+                    </div>
+                    <div class="price-box">
+                        <span class="price-label">Ujian Masuk</span>
+                        <span class="price-value">Rp 250.000</span>
+                    </div>
+                </div>
+
+                <div class="sidebar-card contact-card">
+                    <h3><i class="fas fa-headset"></i> Butuh Bantuan?</h3>
+                    <p>Hubungi kami untuk informasi lebih lanjut</p>
+                    <a href="tel:+622112345678" class="contact-btn">
+                        <i class="fas fa-phone"></i> +62 838-9172-2404
+                    </a>
+                    <a href="https://wa.me/6283891722404" class="contact-btn whatsapp">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
+            </aside>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Universitas Tadarusah Sanris Tangerang. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Form validation and submission
+        const form = document.getElementById('registrationForm');
+        
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Show loading
+            const submitBtn = form.querySelector('.btn-submit');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission
+            setTimeout(() => {
+                alert('Pendaftaran berhasil dikirim! Kami akan menghubungi Anda segera.');
+                form.reset();
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
+        });
+
+        // NIK validation (16 digits)
+        const nikInput = document.getElementById('nik');
+        nikInput.addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/\D/g, '').slice(0, 16);
+        });
+
+        // Phone validation
+        const phoneInput = document.getElementById('noTelp');
+        phoneInput.addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/\D/g, '').slice(0, 13);
+        });
+    </script>
+</body>
+</html>

@@ -23,7 +23,7 @@ public class KasirJajanKampus {
             switch (pilihanMenu) {
                 case 1:
                     namaMenu = "Seblak Komplit";
-                    hargaMenu = 12000;
+                    hargaMenu = 12000; 
                     break;
                 case 2:
                     namaMenu = "Mie Ayam Spesial";
